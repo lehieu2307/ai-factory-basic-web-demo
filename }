@@ -1,0 +1,15 @@
+
+## Routes
+
+| Route | View | Description |
+| --- | --- | --- |
+| `#/home` | Home | Hero, feature cards, overview metrics |
+| `#/dashboard` | Dashboard | Telemetry, counters, chart, event logs |
+| `#/calculator` | Calculator | Model selector, token sliders, daily spend estimate |
+| `#/workflow` | Workflow | SVG pipeline, node docs, FAQ/search/copy |
+| `#/contact` | Contact | Validated feedback form, spinner, toast |
+
+## Run Locally
+
+Use any static file server.
+

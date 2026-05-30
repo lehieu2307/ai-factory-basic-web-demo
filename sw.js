@@ -1,4 +1,4 @@
-const CACHE_NAME = "ai-factory-spa-v1";
+const CACHE_NAME = "ai-factory-spa-v2";
 const CORE_ASSETS = [
   "./",
   "./index.html",

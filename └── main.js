@@ -1,30 +1,60 @@
 
 ## Architecture
 
-- Vanilla SPA using hash routing.
-- Route map lives in `js/main.js`.
-- Views render into `<main id="app">`.
-- Route cleanup registry stops timers/animation frames on navigation.
-- Responsive nav uses a mobile hamburger with ARIA state.
-- Dashboard uses animated counters, Canvas API charting, and simulated logs.
-- Calculator persists last model/token settings in `localStorage`.
-- Workflow view contains SVG nodes, keyboard activation, details panel, searchable FAQ, and copy snippets.
-- Contact form validates client-side only; no network requests.
-- Toasts use an accessible live region.
-- Service worker caches app shell assets for offline reload support.
+### `index.html`
 
-## Design
+Defines semantic shell markup:
 
-Core tokens are defined in `css/style.css`.
+- `<header>` with primary navigation.
+- Skip link for keyboard users.
+- `<main id="app">` as SPA render target.
+- Toast live region.
+- Footer.
+- Linked stylesheet, manifest, Google Fonts, and app script.
 
-- Background: deep navy HSL tones
-- Surfaces: translucent glass panels
-- Accents: cyan, violet, pink, emerald
-- Radius: large rounded cards/buttons
-- Effects: backdrop blur, glow shadows, gradient highlights
-- Motion: subtle animations with `prefers-reduced-motion` fallback
+### `js/main.js`
 
-## Run
+Contains all client-side SPA logic:
 
-Basic file preview:
+- Route table and hash router.
+- View render functions.
+- Dashboard counter animation and Canvas API chart.
+- Calculator state, model rates, and local-storage persistence.
+- Workflow SVG interactions.
+- FAQ filtering and copy helper.
+- Contact form validation.
+- Toast notifications.
+- Service worker registration.
+
+### `css/style.css`
+
+Contains design system and responsive layout:
+
+- CSS custom properties.
+- Glassmorphism surfaces.
+- Gradients, glow borders, shadows.
+- Grid and flex layouts.
+- Mobile breakpoints.
+- Reduced-motion safety.
+- Focus-visible accessibility styles.
+
+### `sw.js`
+
+Caches core app shell assets:
+
+- `./`
+- `./index.html`
+- `./css/style.css`
+- `./js/main.js`
+- `./manifest.json`
+
+Uses cache-first reads with network fallback and offline navigation fallback to `index.html`.
+
+### `manifest.json`
+
+Provides installable app metadata for standalone display.
+
+## Design Tokens
+
+Core CSS variables live in `css/style.css`.
 

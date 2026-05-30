@@ -1,32 +1,41 @@
 
-## Manual Test Checklist
+Manual checks:
 
-1. Open app via local server.
-2. Confirm default route becomes `#/home`.
-3. Visit all routes:
-   - `#/home`
-   - `#/dashboard`
-   - `#/calculator`
-   - `#/workflow`
-   - `#/contact`
-4. Resize to mobile and verify hamburger behavior.
-5. Dashboard counters animate, chart moves, logs update.
-6. Navigate away from dashboard and confirm old timers stop.
-7. Calculator sliders/model update totals and bars.
-8. Reload and confirm calculator values persist.
-9. Workflow SVG nodes update the detail card by click and keyboard.
-10. FAQ search filters entries.
-11. Copy command button writes the run command and shows toast.
-12. Contact empty submit shows validation errors.
-13. Invalid email is rejected.
-14. Valid contact submit shows spinner then success toast.
-15. Skip link and focus rings work.
-16. Reload once, set browser offline, refresh, confirm cached shell loads.
+1. Open `http://localhost:8000`.
+2. Confirm `#/home`, `#/dashboard`, `#/calculator`, `#/workflow`, `#/contact` render without reload.
+3. Resize to mobile width and verify hamburger menu.
+4. Confirm dashboard counters animate and event logs update.
+5. Confirm calculator updates totals and persists values after refresh.
+6. Confirm workflow nodes update detail card.
+7. Confirm FAQ search filters entries and accordion still opens after clearing search.
+8. Confirm copy button shows toast.
+9. Submit invalid contact form and verify errors.
+10. Submit valid contact form and verify success toast.
+11. In DevTools, verify `sw.js` registers and app shell is cached.
+
+## Accessibility
+
+Implemented:
+
+- Semantic landmarks.
+- Skip link.
+- Keyboard-focusable app target.
+- Visible `:focus-visible` styles.
+- `aria-live` toast/log regions.
+- `aria-invalid` form state.
+- Keyboard activation for workflow SVG nodes.
+- Reduced-motion media query.
+
+## Browser Support
+
+Modern evergreen browsers supporting:
+
+- CSS custom properties.
+- CSS grid/flexbox.
+- Canvas API.
+- Service Worker API.
+- Local Storage.
 
 ## Notes
 
-- No npm dependencies.
-- No build step.
-- No Tailwind or chart libraries.
-- No secrets.
-- No backend/API submission.
+This project intentionally uses pure vanilla HTML, CSS, and JavaScript. No external npm dependencies, bundlers, React, Vue, Svelte, TailwindCSS, or chart libraries are required.

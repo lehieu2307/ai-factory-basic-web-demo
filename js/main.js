@@ -282,7 +282,7 @@ function renderWorkflow() {
         <div id="faqList">
           <button class="accordion">How is routing handled?</button><div class="panel"><p>Hash routes render view templates without a server.</p><pre>location.hash = "#/dashboard"</pre></div>
           <button class="accordion">Does it need a build?</button><div class="panel"><p>No build. Serve the root or open index.html for basic use.</p><pre>python3 -m http.server 8080</pre></div>
-          <button class="accordion">What is cached offline?</button><div class="panel"><p>The service worker caches the app shell, CSS, JS, manifest, and index.</p><pre>caches.open("ai-factory-spa-v1")</pre></div>
+          <button class="accordion">What is cached offline?</button><div class="panel"><p>The service worker caches the app shell, CSS, JS, manifest, and index.</p><pre>caches.open("ai-factory-spa-v2")</pre></div>
         </div>
       </div>
     </section>
@@ -305,15 +305,17 @@ function renderWorkflow() {
     select(localStorage.getItem("aiFactoryNode") || "issue");
 
     document.querySelectorAll(".accordion").forEach((btn) => {
-      btn.addEventListener("click", () => btn.nextElementSibling.classList.toggle("open"));
+      btn.addEventListener("click", () => {
+        btn.nextElementSibling.classList.toggle("open");
+      });
     });
     document.getElementById("faqSearch").addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
       document.querySelectorAll(".accordion").forEach((btn) => {
         const panel = btn.nextElementSibling;
         const show = `${btn.textContent} ${panel.textContent}`.toLowerCase().includes(q);
-        btn.style.display = show ? "" : "none";
-        panel.style.display = show && panel.classList.contains("open") ? "block" : "none";
+        btn.hidden = !show;
+        panel.hidden = !show;
       });
     });
     document.querySelector("[data-copy]").addEventListener("click", () => copyText("python3 -m http.server 8080"));
