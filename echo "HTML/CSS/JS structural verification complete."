@@ -1,0 +1,32 @@
+
+## Manual Test Checklist
+
+1. Open app via local server.
+2. Confirm default route becomes `#/home`.
+3. Visit all routes:
+   - `#/home`
+   - `#/dashboard`
+   - `#/calculator`
+   - `#/workflow`
+   - `#/contact`
+4. Resize to mobile and verify hamburger behavior.
+5. Dashboard counters animate, chart moves, logs update.
+6. Navigate away from dashboard and confirm old timers stop.
+7. Calculator sliders/model update totals and bars.
+8. Reload and confirm calculator values persist.
+9. Workflow SVG nodes update the detail card by click and keyboard.
+10. FAQ search filters entries.
+11. Copy command button writes the run command and shows toast.
+12. Contact empty submit shows validation errors.
+13. Invalid email is rejected.
+14. Valid contact submit shows spinner then success toast.
+15. Skip link and focus rings work.
+16. Reload once, set browser offline, refresh, confirm cached shell loads.
+
+## Notes
+
+- No npm dependencies.
+- No build step.
+- No Tailwind or chart libraries.
+- No secrets.
+- No backend/API submission.
