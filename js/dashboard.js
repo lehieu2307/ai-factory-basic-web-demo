@@ -30,6 +30,7 @@
     refs.taskTitle = document.getElementById("taskTitle");
     refs.taskStatus = document.getElementById("taskStatus");
     refs.taskPriority = document.getElementById("taskPriority");
+    refs.logSearch = document.getElementById("logSearch");
 
     if (!window.DashboardData) {
       console.error("DashboardData missing");
@@ -57,6 +58,10 @@
       event.preventDefault();
       addTask();
     });
+
+    if (refs.logSearch) {
+      refs.logSearch.addEventListener("input", renderLogs);
+    }
   }
 
   function initTheme() {
@@ -147,7 +152,13 @@
     assertNode(refs.logsList, "logsList");
     refs.logsList.replaceChildren();
 
+    const query = refs.logSearch ? refs.logSearch.value.toLowerCase().trim() : "";
+
     window.DashboardData.logs.forEach((log) => {
+      if (query && !log.message.toLowerCase().includes(query) && !log.level.toLowerCase().includes(query)) {
+        return;
+      }
+
       const item = document.createElement("article");
       item.className = "log-item";
 

@@ -20,6 +20,12 @@
       <span class="brand__mark" aria-hidden="true">⚡</span>
       <span class="brand__text">AI Factory</span>
     </div>
+    <nav class="top-nav" role="tablist" aria-orientation="horizontal">
+      <button class="top-nav__item is-active" type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true" data-tab="dashboard">Dashboard</button>
+      <button class="top-nav__item" type="button" role="tab" id="tab-tasks" aria-controls="panel-tasks" aria-selected="false" data-tab="tasks">Tasks</button>
+      <button class="top-nav__item" type="button" role="tab" id="tab-logs" aria-controls="panel-logs" aria-selected="false" data-tab="logs">Logs</button>
+      <button class="top-nav__item" type="button" role="tab" id="tab-settings" aria-controls="panel-settings" aria-selected="false" data-tab="settings">Settings</button>
+    </nav>
     <button id="themeToggle" class="btn btn--ghost" type="button" aria-label="Toggle theme">
       <span id="themeIcon" aria-hidden="true">🌙</span>
       <span id="themeLabel">Dark</span>
@@ -27,14 +33,6 @@
   </header>
 
   <div class="app-shell">
-    <aside class="sidebar" aria-label="Dashboard sections">
-      <nav class="side-nav" role="tablist" aria-orientation="vertical">
-        <button class="side-nav__item is-active" type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true" data-tab="dashboard">Dashboard</button>
-        <button class="side-nav__item" type="button" role="tab" id="tab-tasks" aria-controls="panel-tasks" aria-selected="false" data-tab="tasks">Tasks</button>
-        <button class="side-nav__item" type="button" role="tab" id="tab-logs" aria-controls="panel-logs" aria-selected="false" data-tab="logs">Logs</button>
-        <button class="side-nav__item" type="button" role="tab" id="tab-settings" aria-controls="panel-settings" aria-selected="false" data-tab="settings">Settings</button>
-      </nav>
-    </aside>
 
     <main id="mainContent" class="main-content" tabindex="-1">
       <section id="panel-dashboard" class="tab-panel is-active" role="tabpanel" aria-labelledby="tab-dashboard" data-panel="dashboard">
@@ -88,6 +86,10 @@
           <p class="eyebrow">System</p>
           <h1>Logs</h1>
           <p>Recent activity and service events.</p>
+        </div>
+        <div class="field" style="margin-bottom: 1.5rem; max-width: 400px;">
+          <label for="logSearch">Search logs</label>
+          <input id="logSearch" type="search" placeholder="Filter logs by message or level..." style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text);">
         </div>
         <div id="logsList" class="logs-list" aria-label="Activity logs"></div>
       </section>
