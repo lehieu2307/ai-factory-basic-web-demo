@@ -1,0 +1,10 @@
+{
+  "name": "AI Factory SPA Dashboard",
+  "short_name": "AI Factory",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080b16",
+  "theme_color": "#080b16",
+  "description": "Premium vanilla SPA dashboard demo with offline support."
+}
