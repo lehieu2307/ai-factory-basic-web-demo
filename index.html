@@ -1,50 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080b16">
-  <meta name="description" content="AI Factory premium vanilla SPA dashboard demo.">
-  <title>AI Factory SPA Dashboard</title>
-  <link rel="manifest" href="./manifest.json">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
-  <script defer src="./js/main.js"></script>
+  <meta name="description" content="Vanilla static interactive dashboard.">
+  <title>AI Factory Dashboard</title>
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <script defer src="./js/data.js"></script>
+  <script defer src="./js/dashboard.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#app">Skip to content</a>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="nav shell" aria-label="Primary navigation">
-      <a class="brand" href="#/home" aria-label="AI Factory home">
-        <span class="brand-mark" aria-hidden="true">⚡</span>
-        <span>AI Factory</span>
-      </a>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
-        <span class="sr-only">Toggle navigation</span>
-        <span></span><span></span><span></span>
-      </button>
-
-      <div id="nav-links" class="nav-links">
-        <a href="#/home" data-route="/home">Home</a>
-        <a href="#/dashboard" data-route="/dashboard">Dashboard</a>
-        <a href="#/calculator" data-route="/calculator">Calculator</a>
-        <a href="#/workflow" data-route="/workflow">Workflow</a>
-        <a href="#/contact" data-route="/contact">Contact</a>
-      </div>
-    </nav>
+  <header class="topbar">
+    <div class="brand" aria-label="AI Factory">
+      <span class="brand__mark" aria-hidden="true">⚡</span>
+      <span class="brand__text">AI Factory</span>
+    </div>
+    <button id="themeToggle" class="btn btn--ghost" type="button" aria-label="Toggle theme">
+      <span id="themeIcon" aria-hidden="true">🌙</span>
+      <span id="themeLabel">Dark</span>
+    </button>
   </header>
 
-  <main id="app" class="shell" tabindex="-1"></main>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Dashboard sections">
+      <nav class="side-nav" role="tablist" aria-orientation="vertical">
+        <button class="side-nav__item is-active" type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true" data-tab="dashboard">Dashboard</button>
+        <button class="side-nav__item" type="button" role="tab" id="tab-tasks" aria-controls="panel-tasks" aria-selected="false" data-tab="tasks">Tasks</button>
+        <button class="side-nav__item" type="button" role="tab" id="tab-logs" aria-controls="panel-logs" aria-selected="false" data-tab="logs">Logs</button>
+        <button class="side-nav__item" type="button" role="tab" id="tab-settings" aria-controls="panel-settings" aria-selected="false" data-tab="settings">Settings</button>
+      </nav>
+    </aside>
 
-  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <main id="mainContent" class="main-content" tabindex="-1">
+      <section id="panel-dashboard" class="tab-panel is-active" role="tabpanel" aria-labelledby="tab-dashboard" data-panel="dashboard">
+        <div class="page-heading">
+          <p class="eyebrow">Operations</p>
+          <h1>Interactive Dashboard</h1>
+          <p>Realtime-style command center built with vanilla HTML, CSS, and JavaScript.</p>
+        </div>
+        <div id="metricsGrid" class="metrics-grid" aria-label="Metrics"></div>
+        <div id="analyticsGrid" class="analytics-grid" aria-label="Analytics"></div>
+      </section>
 
-  <footer class="footer shell">
-    <p>© <span id="year"></span> AI Factory SPA. Vanilla HTML, CSS, JS.</p>
-    <a href="#/workflow">Docs &amp; FAQ</a>
-  </footer>
+      <section id="panel-tasks" class="tab-panel" role="tabpanel" aria-labelledby="tab-tasks" data-panel="tasks" hidden>
+        <div class="page-heading">
+          <p class="eyebrow">Workflow</p>
+          <h1>Tasks</h1>
+          <p>Add work items and track status across the board.</p>
+        </div>
+
+        <form id="taskForm" class="task-form" autocomplete="off">
+          <div class="field">
+            <label for="taskTitle">Task title</label>
+            <input id="taskTitle" name="title" type="text" placeholder="Ship dashboard polish">
+          </div>
+          <div class="field">
+            <label for="taskStatus">Status</label>
+            <select id="taskStatus" name="status">
+              <option value="todo">To do</option>
+              <option value="progress">In progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority" name="priority">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <button class="btn btn--primary" type="submit">Add task</button>
+        </form>
+
+        <div id="kanbanBoard" class="kanban-board" aria-label="Kanban board">
+          <div id="taskColumns" class="task-columns"></div>
+        </div>
+      </section>
+
+      <section id="panel-logs" class="tab-panel" role="tabpanel" aria-labelledby="tab-logs" data-panel="logs" hidden>
+        <div class="page-heading">
+          <p class="eyebrow">System</p>
+          <h1>Logs</h1>
+          <p>Recent activity and service events.</p>
+        </div>
+        <div id="logsList" class="logs-list" aria-label="Activity logs"></div>
+      </section>
+
+      <section id="panel-settings" class="tab-panel" role="tabpanel" aria-labelledby="tab-settings" data-panel="settings" hidden>
+        <div class="page-heading">
+          <p class="eyebrow">Control</p>
+          <h1>Settings</h1>
+          <p>Static preferences and deployment placeholders.</p>
+        </div>
+        <div class="settings-grid">
+          <article class="settings-card">
+            <h2>Notifications</h2>
+            <label class="toggle-row">
+              <span>Email digests</span>
+              <input type="checkbox" checked>
+            </label>
+            <label class="toggle-row">
+              <span>Deploy alerts</span>
+              <input type="checkbox" checked>
+            </label>
+          </article>
+          <article class="settings-card">
+            <h2>Workspace</h2>
+            <p class="muted">Environment: Production</p>
+            <p class="muted">Region: Global Edge</p>
+          </article>
+          <article class="settings-card">
+            <h2>Security</h2>
+            <p class="muted">SSO placeholder enabled.</p>
+            <button class="btn btn--ghost" type="button">Review access</button>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

@@ -1,0 +1,40 @@
+:root {
+  color-scheme: dark;
+  --bg: hsl(226 42% 7%);
+  --bg-soft: hsl(224 34% 10%);
+  --surface: hsl(224 32% 13% / 0.78);
+  --card: hsl(225 28% 16% / 0.82);
+  --text: hsl(220 28% 94%);
+  --muted: hsl(222 14% 68%);
+  --border: hsl(221 22% 100% / 0.12);
+  --primary: hsl(260 95% 68%);
+  --primary-strong: hsl(260 95% 74%);
+  --accent: hsl(190 95% 58%);
+  --success: hsl(150 72% 50%);
+  --warning: hsl(39 96% 58%);
+  --danger: hsl(350 84% 62%);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 24px 80px hsl(224 60% 3% / 0.45);
+  --shadow-soft: 0 16px 42px hsl(224 60% 3% / 0.26);
+  --transition: 180ms ease;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: hsl(220 35% 96%);
+  --bg-soft: hsl(220 32% 92%);
+  --surface: hsl(0 0% 100% / 0.78);
+  --card: hsl(0 0% 100% / 0.9);
+  --text: hsl(224 32% 12%);
+  --muted: hsl(224 12% 42%);
+  --border: hsl(224 22% 10% / 0.12);
+  --primary: hsl(260 78% 55%);
+  --primary-strong: hsl(260 82% 46%);
+  --accent: hsl(190 86% 43%);
+  --success: hsl(150 68% 34%);
+  --warning: hsl(36 90% 46%);
+  --danger: hsl(350 72% 48%);
+  --shadow: 0 24px 80px hsl(224 30% 40% / 0.18);
+  --shadow-soft: 0 16px 42px hsl(224 30% 40% / 0.14);
+}
