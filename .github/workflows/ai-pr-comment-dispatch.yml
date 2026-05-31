@@ -1,0 +1,48 @@
+name: AI PR Comment Dispatch
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  dispatch-to-hq:
+    if: >-
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/ai') &&
+      github.event.comment.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch /ai PR comment to HQ
+        env:
+          GH_TOKEN: ${{ secrets.AI_FACTORY_DISPATCH_TOKEN }}
+          HQ_REPO: lehieu2307/ai-factory-hq
+          SOURCE_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          COMMENT_URL: ${{ github.event.comment.html_url }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing secret AI_FACTORY_DISPATCH_TOKEN" >&2
+            exit 1
+          fi
+
+          payload="$(jq -n \
+            --arg source_repo "$SOURCE_REPO" \
+            --argjson pr_number "$PR_NUMBER" \
+            --argjson comment_id "$COMMENT_ID" \
+            --arg comment_body "$COMMENT_BODY" \
+            --arg comment_author "$COMMENT_AUTHOR" \
+            --arg comment_url "$COMMENT_URL" \
+            '{event_type:"ai_pr_comment", client_payload:{source_repo:$source_repo, pr_number:$pr_number, comment_id:$comment_id, comment_body:$comment_body, comment_author:$comment_author, comment_url:$comment_url}}')"
+
+          gh api "repos/${HQ_REPO}/dispatches" \
+            --method POST \
+            --input - <<< "$payload"
