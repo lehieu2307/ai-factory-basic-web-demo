@@ -1,0 +1,258 @@
+.metrics-grid,
+.analytics-grid,
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.metric-card,
+.analytics-card,
+.settings-card,
+.log-item,
+.kanban-column,
+.task-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.metric-card,
+.analytics-card,
+.settings-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.2rem;
+  border-radius: var(--radius);
+}
+
+.metric-card::before,
+.analytics-card::before,
+.settings-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, hsl(0 0% 100% / 0.12), transparent 38%);
+}
+
+.metric-card__label,
+.analytics-card__label {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-card__value {
+  margin: 0.55rem 0;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 850;
+  letter-spacing: -0.06em;
+}
+
+.metric-card__delta {
+  color: var(--success);
+  font-weight: 800;
+}
+
+.analytics-card__value {
+  margin: 0.35rem 0;
+  font-size: 1.8rem;
+  font-weight: 850;
+}
+
+.analytics-card__bar {
+  height: 0.65rem;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: hsl(0 0% 100% / 0.08);
+}
+
+.analytics-card__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.kanban-board {
+  min-width: 0;
+}
+
+.task-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.kanban-column {
+  min-height: 360px;
+  padding: 1rem;
+  border-radius: var(--radius);
+}
+
+.kanban-column__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kanban-column__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.kanban-column__count {
+  display: inline-grid;
+  min-width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 999px;
+  color: var(--text);
+  background: hsl(0 0% 100% / 0.08);
+}
+
+.kanban-column__cards {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.task-card {
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  border-color: hsl(190 95% 58% / 0.45);
+}
+
+.task-card__title {
+  margin: 0 0 0.7rem;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.task-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.65rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  color: var(--text);
+  background: hsl(0 0% 100% / 0.08);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.badge--high {
+  color: var(--danger);
+  background: hsl(350 84% 62% / 0.12);
+}
+
+.badge--normal {
+  color: var(--accent);
+  background: hsl(190 95% 58% / 0.12);
+}
+
+.badge--low {
+  color: var(--success);
+  background: hsl(150 72% 50% / 0.12);
+}
+
+.logs-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.log-item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-radius: var(--radius);
+}
+
+.log-item__time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.log-item__message {
+  margin: 0;
+  color: var(--text);
+}
+
+.log-item__level {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.log-item__level--info {
+  color: var(--accent);
+}
+
+.log-item__level--warn {
+  color: var(--warning);
+}
+
+.log-item__level--error {
+  color: var(--danger);
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  color: var(--text);
+}
+
+.toggle-row input {
+  width: auto;
+  min-height: auto;
+  accent-color: var(--primary);
+}
+
+@media (max-width: 1100px) {
+  .metrics-grid,
+  .analytics-grid,
+  .settings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .kanban-column {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .metrics-grid,
+  .analytics-grid,
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .log-item {
+    grid-template-columns: 1fr;
+  }
+}
